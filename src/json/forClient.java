@@ -10,7 +10,6 @@ public class forClient {
 
     Map<String, String> sendOVer;
     private Gson gson;
-
     public forClient() {
         sendOVer = new LinkedHashMap<>();
         gson = new Gson();
@@ -47,8 +46,6 @@ public class forClient {
             this.sendOVer.put("type",parts[0]);
             this.sendOVer.put("key", parts[1]);
         }
-
-
 
 
         return gson.toJson(sendOVer);

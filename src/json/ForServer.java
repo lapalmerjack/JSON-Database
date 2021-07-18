@@ -10,12 +10,10 @@ public class ForServer {
 
 
     Map<String,String> responseFromJSON;
-    Gson gson;
-    private ResponseToClient response;
+    private final ResponseToClient response;
 
     public ForServer(ResponseToClient responseToClient) {
         responseFromJSON = new LinkedHashMap<>();
-        gson = new Gson();
         this.response = responseToClient;
     }
 
