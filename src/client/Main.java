@@ -2,7 +2,7 @@ package client;
 
 import FileManager.ClientFileManager;
 import com.beust.jcommander.JCommander;
-import json.forClient;
+import json.ClientParseForServer;
 
 import java.io.IOException;
 import java.util.List;
@@ -64,8 +64,8 @@ public class Main {
                 }
             }
 
-            forClient jsonRequest = new forClient();
-            String jsonMessage = jsonRequest.stringToJSON(msg);
+            ClientParseForServer jsonRequest = new ClientParseForServer();
+            String jsonMessage = jsonRequest.ParseToJson(msg);
             new  Client().start(jsonMessage);
 
         }

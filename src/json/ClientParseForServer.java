@@ -5,19 +5,19 @@ import com.google.gson.Gson;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class forClient {
+public class ClientParseForServer {
 
 
     Map<String, String> sendOVer;
     private Gson gson;
-    public forClient() {
+    public ClientParseForServer() {
         sendOVer = new LinkedHashMap<>();
         gson = new Gson();
     }
 
 
 
-    public String stringToJSON(String commanders) {
+    public String ParseToJson(String commanders) {
         String [] parts = commanders.split(" ");
         StringBuilder stringBuilder = new StringBuilder();
         if(parts[0].equals("delete")) {

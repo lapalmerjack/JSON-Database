@@ -6,18 +6,18 @@ import com.google.gson.Gson;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class ForServer {
+public class ServerParseForClient {
 
 
     Map<String,String> responseFromJSON;
     private final ResponseToClient response;
 
-    public ForServer(ResponseToClient responseToClient) {
+    public ServerParseForClient(ResponseToClient responseToClient) {
         responseFromJSON = new LinkedHashMap<>();
         this.response = responseToClient;
     }
 
-    public String stringToJSON() {
+    public String ParseToJson() {
         this.responseFromJSON.clear();
         if(this.response.getValue().isEmpty() && this.response.getReason().isEmpty()) {
             if(this.response.getResponse().equals("exit") || this.response.getResponse().equals("OK")) {

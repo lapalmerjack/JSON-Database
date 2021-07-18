@@ -2,7 +2,7 @@ package json;
 
 import com.google.gson.JsonElement;
 
-public class fromJSON {
+public class FromJSONParser {
 
 
     private String type;
@@ -10,13 +10,13 @@ public class fromJSON {
     private JsonElement value;
 
 
-    public fromJSON(String type, JsonElement key, JsonElement value) {
+    public FromJSONParser(String type, JsonElement key, JsonElement value) {
         this.type = type;
         this.key = key;
         this.value = value;
     }
 
-    public fromJSON(String type, JsonElement key) {
+    public FromJSONParser(String type, JsonElement key) {
         this.type = type;
         this.key = key;
     }

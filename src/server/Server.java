@@ -2,8 +2,8 @@ package server;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import json.ForServer;
-import json.fromJSON;
+import json.ServerParseForClient;
+import json.FromJSONParser;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -70,7 +70,7 @@ public class Server extends Thread {
         public void run() {
 
             ResponseToClient responseToClient = new ResponseToClient();
-            ForServer serverSideParse = new ForServer(responseToClient);
+            ServerParseForClient serverSideParse = new ServerParseForClient(responseToClient);
 
 
 
@@ -81,22 +81,22 @@ public class Server extends Thread {
                 GsonBuilder gsonBuilder = new GsonBuilder();
                 Gson gson = gsonBuilder.setPrettyPrinting().create();
                 String msg = inputStream.readUTF();
-                fromJSON fromJSON = gson.fromJson(msg, fromJSON.class);
+                FromJSONParser FromJSONParser = gson.fromJson(msg, FromJSONParser.class);
                 Database database = new Database(responseToClient);
 
 
 
-                switch (fromJSON.getType()) {
+                switch (FromJSONParser.getType()) {
 
                     case "set":
-                        database.set(fromJSON.getKey(), fromJSON.getValue());
+                        database.set(FromJSONParser.getKey(), FromJSONParser.getValue());
                         break;
                     case "get":
-                        database.get(fromJSON.getKey());
+                        database.get(FromJSONParser.getKey());
                         break;
                     case "delete":
 
-                        database.delete(fromJSON.getKey());
+                        database.delete(FromJSONParser.getKey());
                         break;
                     case "exit":
                         database.exitProgram();
@@ -104,7 +104,7 @@ public class Server extends Thread {
 
                 }
 
-                result = serverSideParse.stringToJSON();
+                result = serverSideParse.ParseToJson();
 
                 outputStream.writeUTF(result);
 
