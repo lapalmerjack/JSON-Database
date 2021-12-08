@@ -61,6 +61,7 @@ public class Server extends Thread {
     static class ServiceRequest implements Runnable {
 
         private final Socket socket;
+        private Database database = new Database();
 
         public ServiceRequest(Socket socket) {
             this.socket = socket;
@@ -69,8 +70,8 @@ public class Server extends Thread {
         @Override
         public void run() {
 
-            ResponseToClient responseToClient = new ResponseToClient();
-            ServerParseForClient serverSideParse = new ServerParseForClient(responseToClient);
+
+            ServerParseForClient serverSideParse = new ServerParseForClient();
 
 
 
@@ -82,7 +83,6 @@ public class Server extends Thread {
                 Gson gson = gsonBuilder.setPrettyPrinting().create();
                 String msg = inputStream.readUTF();
                 FromJSONParser FromJSONParser = gson.fromJson(msg, FromJSONParser.class);
-                Database database = new Database(responseToClient);
 
 
 
@@ -104,7 +104,7 @@ public class Server extends Thread {
 
                 }
 
-                result = serverSideParse.ParseToJson();
+                result = serverSideParse.ParseToJson(database.getResponseForClient());
 
                 outputStream.writeUTF(result);
 

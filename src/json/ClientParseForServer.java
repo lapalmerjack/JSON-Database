@@ -7,8 +7,8 @@ import java.util.Map;
 
 public class ClientParseForServer {
 
-
     Map<String, String> sendOVer;
+
     private Gson gson;
     public ClientParseForServer() {
         sendOVer = new LinkedHashMap<>();
@@ -36,7 +36,7 @@ public class ClientParseForServer {
                 stringBuilder.append(" ").append(parts[i]);
             }
             String message = stringBuilder.toString();
-            this.sendOVer.put("type",parts[0]);
+            this.sendOVer.put("type", parts[0]);
             this.sendOVer.put("key", parts[1]);
             this.sendOVer.put("value", message);
 

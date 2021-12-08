@@ -7,7 +7,8 @@ import java.util.Scanner;
 
 public class ClientFileManager {
 
-    private static final String  directory = "/Users/Programming/JSON_Final/src/client/data/";
+    private static final String  directory = "/Users/Programming/JSON_Databases/src/client/data/";
+
 
     public String importFileContent (String fileName) throws IOException {
         return new String(Files.readAllBytes(Paths.get(directory + fileName)));

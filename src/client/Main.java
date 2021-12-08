@@ -9,6 +9,11 @@ import java.util.List;
 
 public class Main {
 
+    static String inFile;
+    static String type;
+    static List<String> index;
+    static List<String>message;
+
     public static void main(String[] args) throws IOException {
         System.out.println("Client Started!");
         Args arguments = new Args();
@@ -17,10 +22,10 @@ public class Main {
                 .build()
                 .parse(args);
 
-        String inFile = arguments.files;
-        String type = arguments.type;
-        List<String> index = arguments.index;
-        List<String>message = arguments.message;
+        inFile = arguments.files;
+        type = arguments.type;
+        index = arguments.index;
+        message = arguments.message;
 
         String msg = "";
 

@@ -9,35 +9,34 @@ import java.util.Map;
 public class ServerParseForClient {
 
 
-    Map<String,String> responseFromJSON;
-    private final ResponseToClient response;
+    Map<String,String> responseFromJSON = new LinkedHashMap<>();
 
-    public ServerParseForClient(ResponseToClient responseToClient) {
-        responseFromJSON = new LinkedHashMap<>();
-        this.response = responseToClient;
+
+    public ServerParseForClient() {
+
     }
 
-    public String ParseToJson() {
-        this.responseFromJSON.clear();
-        if(this.response.getValue().isEmpty() && this.response.getReason().isEmpty()) {
-            if(this.response.getResponse().equals("exit") || this.response.getResponse().equals("OK")) {
-                this.responseFromJSON.put("response", "OK");
+    public String ParseToJson(ResponseToClient response) {
+        responseFromJSON.clear();
+        if(response.getValue().isEmpty() && response.getReason().isEmpty()) {
+            if(response.getResponse().equals("exit") || response.getResponse().equals("OK")) {
+                responseFromJSON.put("response", "OK");
             }
-        } else if (this.response.getReason().isEmpty() && !this.response.getValue().isEmpty() &&
-                this.response.getResponse().equals("OK")) {
-            this.responseFromJSON.put("response", this.response.getResponse());
-            this.responseFromJSON.put("value", this.response.getValue());
-        } else if (!this.response.getReason().equals("No such key") && this.response.getValue().isEmpty()
-                && this.response.getResponse().equals("OK")) {
-            this.responseFromJSON.put("response", this.response.getResponse());
+        } else if (response.getReason().isEmpty() && !response.getValue().isEmpty() &&
+                response.getResponse().equals("OK")) {
+            responseFromJSON.put("response", response.getResponse());
+            responseFromJSON.put("value", response.getValue());
+        } else if (!response.getReason().equals("No such key") && response.getValue().isEmpty()
+                && response.getResponse().equals("OK")) {
+            responseFromJSON.put("response", response.getResponse());
         }
 
         else {
-            this.responseFromJSON.put("response","ERROR");
-            this.responseFromJSON.put("reason", "No such key");
+            responseFromJSON.put("response","ERROR");
+            responseFromJSON.put("reason", "No such key");
         }
 
-        return this.responseFromJSON.toString();
+        return responseFromJSON.toString();
     }
 
 }

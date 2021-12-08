@@ -19,13 +19,13 @@ public class Database {
 
 
     private JsonObject database;
-    private final ResponseToClient response;
+    private final ResponseToClient response = new ResponseToClient();
 
     static ReadWriteLock lock = new ReentrantReadWriteLock();
-    private final static String directory = "/Users/Programming/JSON_Final/src/server/data/db.json";
+    private final static String directory = "/Users/Programming/JSON_Databases/src/server/data/db.json";
 
-    public Database (ResponseToClient responseToClient) {
-        this.response = responseToClient;
+    public Database () {
+
         importFile();
     }
 
@@ -130,19 +130,19 @@ public class Database {
 
 
     private void importFile() {
-        String row = "";
+        StringBuilder row = new StringBuilder();
         lock.readLock().lock();
         try {
-
             Scanner fileReader = new Scanner(Paths.get(directory));
             while (fileReader.hasNextLine()) {
-                row = fileReader.nextLine();
+                row.append(fileReader.nextLine());
+
             }
         } catch (IOException e) {
             e.printStackTrace();
         }finally {
             lock.readLock().unlock();
-            database = new Gson().fromJson(row, JsonObject.class);
+            database = new Gson().fromJson(row.toString(), JsonObject.class);
         }
 
 
@@ -192,6 +192,8 @@ public class Database {
     }
 
 
-
+    public ResponseToClient getResponseForClient() {
+        return response;
+    }
 
 }
