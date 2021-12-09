@@ -9,29 +9,30 @@ import java.util.List;
 
 public class Main {
 
-    static String inFile;
-    static String type;
-    static List<String> index;
-    static List<String>message;
+    protected static String JSONDataFromFile;
+    protected static String type;
+    protected static List<String> index;
+    protected  static List<String>message;
 
     public static void main(String[] args) throws IOException {
-        System.out.println("Client Started!");
         Args arguments = new Args();
         JCommander.newBuilder()
                 .addObject(arguments)
                 .build()
                 .parse(args);
 
-        inFile = arguments.files;
+        JSONDataFromFile = arguments.files;
         type = arguments.type;
         index = arguments.index;
         message = arguments.message;
+
+        System.out.println("Client Started!");
 
         String msg = "";
 
         if(type == null) {
             ClientFileManager fileManager = new ClientFileManager();
-            String jsonFromFile = fileManager.importFileContent(inFile);
+            String jsonFromFile = fileManager.importFileContent(JSONDataFromFile);
             new Client().start(jsonFromFile);
 
         } else {
