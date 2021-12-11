@@ -12,6 +12,7 @@ public class SetValue implements StringParsingStrategy {
     public String prepareJSONForServer(ArgumentsFromCommandLine arguments) {
         Map<String, String> JSONStringForServer = new HashMap<>();
 
+
         JSONStringForServer.put("type", arguments.getType());
         JSONStringForServer.put("key", arguments.getIndex());
         JSONStringForServer.put("value", arguments.getMessage());

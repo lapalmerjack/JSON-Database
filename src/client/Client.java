@@ -16,7 +16,7 @@ public class Client {
 
     private static final String SERVER_ADDRESS = "127.0.0.1";
     private static final int SERVER_PORT = 35255;
-    private ArgumentsFromCommandLine arguments = new ArgumentsFromCommandLine();
+    private final ArgumentsFromCommandLine arguments = new ArgumentsFromCommandLine();
 
 
     public void start() {
@@ -28,35 +28,45 @@ public class Client {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
 
-            Context context = new Context(chooseStrategy());
-            String messageForServer = context.executeStrategy(arguments);
-            System.out.println("sent to server: " + messageForServer);
-
-
-            dataOutputStream.writeUTF(messageForServer);
-            String receivedMsg = dataInputStream.readUTF();
-
-            JsonElement jsonElement = new JsonParser().parse(receivedMsg);
-
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String newMessage = gson.toJson(jsonElement);
-
-            System.out.println("Received: " + newMessage.replace("\\", ""));
-
+            writeRequestToServer(dataOutputStream);
+            printMessageFromServer(dataInputStream);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+
+    private void writeRequestToServer(DataOutputStream dataOutputStream) throws IOException {
+        Context context = new Context(chooseStrategy());
+        String messageForServer = context.createJSONStringForServer(arguments);
+        System.out.println("sent to server: " + messageForServer);
+        dataOutputStream.writeUTF(messageForServer);
+
+
+    }
+
+    private void printMessageFromServer(DataInputStream dataInputStream) throws IOException {
+        String receivedMsg = dataInputStream.readUTF();
+        JsonElement jsonElement = new JsonParser().parse(receivedMsg);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String newMessage = gson.toJson(jsonElement);
+        System.out.println("Received: " + newMessage.replace("\\", ""));
+
+    }
+
     private StringParsingStrategy chooseStrategy() {
         if (arguments.getJSONDataFromFile() != null) {
             return new GetValuesFromFile();
-        } else if (arguments.getType().equals("set")) {
+        } else if (arguments.getType().equals("exit")) {
+            return new Exit();
+        }
+        else if (arguments.getType().equals("set")) {
             return new SetValue();
         } else {
             return new GetOrDeleteValue();
         }
     }
+
 
 }

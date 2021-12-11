@@ -10,7 +10,7 @@ public class Context {
         this.strategy = strategy;
     }
 
-    public String executeStrategy(ArgumentsFromCommandLine arguments) {
+    public String createJSONStringForServer(ArgumentsFromCommandLine arguments) {
       return  this.strategy.prepareJSONForServer(arguments);
     }
 

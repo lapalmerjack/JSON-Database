@@ -61,7 +61,7 @@ public class Server extends Thread {
     static class ServiceRequest implements Runnable {
 
         private final Socket socket;
-        private Database database = new Database();
+        private final Database database = new Database();
 
         public ServiceRequest(Socket socket) {
             this.socket = socket;
