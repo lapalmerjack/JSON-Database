@@ -19,9 +19,6 @@ public class Server extends Thread {
     private final ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 3);
     private ServerSocket serverSocket;
 
-
-
-
     @Override
     public void run() {
         try {
@@ -70,9 +67,7 @@ public class Server extends Thread {
         @Override
         public void run() {
 
-
             ServerParseForClient serverSideParse = new ServerParseForClient();
-
 
 
             try {
@@ -83,7 +78,6 @@ public class Server extends Thread {
                 Gson gson = gsonBuilder.setPrettyPrinting().create();
                 String msg = inputStream.readUTF();
                 FromJSONParser FromJSONParser = gson.fromJson(msg, FromJSONParser.class);
-
 
 
                 switch (FromJSONParser.getType()) {
