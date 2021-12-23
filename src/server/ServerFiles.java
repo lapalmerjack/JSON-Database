@@ -2,6 +2,7 @@ package server;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import server.command.Database;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,13 +16,10 @@ public class ServerFiles {
 
     static ReadWriteLock lock = new ReentrantReadWriteLock();
     private final static String directory = "/Users/Programming/JSON_Databases/src/server/data/db.json";
-    private Database database;
 
-    public ServerFiles(Database database) {
-        this.database = database;
-    }
 
-    private void importFile() {
+
+    public JsonObject importFile() {
         StringBuilder row = new StringBuilder();
         lock.readLock().lock();
         try {
@@ -34,14 +32,15 @@ public class ServerFiles {
             e.printStackTrace();
         }finally {
             lock.readLock().unlock();
-          //  database = new Gson().fromJson(row.toString(), JsonObject.class);
+
         }
 
+      return new Gson().fromJson(row.toString(), JsonObject.class);
 
     }
 
 
-    private void exportFile() {
+    public void exportFile(JsonObject database) {
         lock.writeLock().lock();
         try {
 

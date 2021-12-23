@@ -20,7 +20,7 @@ public class ServerParseForClient {
         responseFromJSON.clear();
         if(response.getValue().isEmpty() && response.getReason().isEmpty()) {
             if(response.getResponse().equals("exit") || response.getResponse().equals("OK")) {
-                responseFromJSON.put("response", "OK");
+                responseFromJSON.put("response", "yay!");
             }
         } else if (response.getReason().isEmpty() && !response.getValue().isEmpty() &&
                 response.getResponse().equals("OK")) {

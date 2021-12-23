@@ -11,6 +11,24 @@ public class ResponseToClient {
 
 
 
+    public ResponseToClient(String response, String value, String reason) {
+        this.response = response;
+        this.value = value;
+        this.reason = reason;
+    }
+
+    public ResponseToClient(String response,  String reason) {
+        this.response = response;
+        this.reason = reason;
+    }
+
+
+    public ResponseToClient(String response) {
+        this.response = response;
+    }
+
+    public ResponseToClient() {
+    }
 
     public String getResponse() {
         return response;
