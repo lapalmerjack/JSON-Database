@@ -2,8 +2,6 @@ package server;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import server.command.Database;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;

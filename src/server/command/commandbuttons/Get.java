@@ -1,6 +1,6 @@
 package server.command.commandbuttons;
 
-import json.FromJSONParser;
+import server.FromJSONParser;
 import server.command.Command;
 import server.command.Database;
 

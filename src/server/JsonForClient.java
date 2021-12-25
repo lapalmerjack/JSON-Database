@@ -1,6 +1,6 @@
 package server;
 
-public class ResponseToClient {
+public class JsonForClient {
 
 
 
@@ -11,23 +11,23 @@ public class ResponseToClient {
 
 
 
-    public ResponseToClient(String response, String value, String reason) {
+    public JsonForClient(String response, String value, String reason) {
         this.response = response;
         this.value = value;
         this.reason = reason;
     }
 
-    public ResponseToClient(String response,  String reason) {
+    public JsonForClient(String response, String reason) {
         this.response = response;
         this.reason = reason;
     }
 
 
-    public ResponseToClient(String response) {
+    public JsonForClient(String response) {
         this.response = response;
     }
 
-    public ResponseToClient() {
+    public JsonForClient() {
     }
 
     public String getResponse() {

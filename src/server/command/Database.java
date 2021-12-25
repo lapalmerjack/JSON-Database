@@ -3,7 +3,7 @@ package server.command;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import server.ResponseToClient;
+import server.JsonForClient;
 import server.ServerFiles;
 
 import java.util.concurrent.locks.ReadWriteLock;
@@ -14,9 +14,9 @@ public class Database {
     private JsonObject database;
     static ReadWriteLock lock = new ReentrantReadWriteLock();
     private final ServerFiles serverFiles = new ServerFiles();
-    private ResponseToClient response;
+    private JsonForClient response;
 
-    public Database(ResponseToClient response) {
+    public Database(JsonForClient response) {
         this.response = response;
         database = serverFiles.importFile();
     }

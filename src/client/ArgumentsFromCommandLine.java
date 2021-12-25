@@ -6,12 +6,10 @@ public class ArgumentsFromCommandLine {
 
    private final String JSONDataFromFile = Main.JSONDataFromFile;
    private final String  type = Main.type;
-   private final String index;
-   private final String message;
+   private final String index = parseArrayToString(Main.index);
+   private final String message = parseArrayToString(Main.message);
 
     public ArgumentsFromCommandLine() {
-        index = parseArrayToString(Main.index);
-        message = parseArrayToString(Main.message);
 
     }
 
