@@ -13,7 +13,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 public class ServerFiles {
 
     static ReadWriteLock lock = new ReentrantReadWriteLock();
-    private final static String directory = "/Users/Programming/JSON_Databases/src/server/data/db.json";
+    private final static String directory = "/src/server/data/db.json";
 
 
 
