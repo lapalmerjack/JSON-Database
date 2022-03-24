@@ -4,16 +4,17 @@ import java.util.List;
 
 public class ArgumentsFromCommandLine {
 
-   private final String JSONDataFromFile = Main.JSONDataFromFile;
-   private final String  type = Main.type;
-   private final String index = parseArrayToString(Main.index);
-   private final String message = parseArrayToString(Main.message);
+   private final String JSONDataFromFile;
+   private final String  type;
+   private final String index;
+   private final String message;
 
-    public ArgumentsFromCommandLine() {
-
+    public ArgumentsFromCommandLine(String JSONDataFromFile, String type, List<String> index, List<String>message) {
+        this.JSONDataFromFile = JSONDataFromFile;
+        this.type = type;
+        this.index =parseArrayToString(index);
+        this.message = parseArrayToString(message);
     }
-
-
 
     private String parseArrayToString(List<String> array) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -35,6 +36,8 @@ public class ArgumentsFromCommandLine {
     public String getIndex() {
         return index;
     }
+
+
 
     public String getMessage() {
         return message;
