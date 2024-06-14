@@ -20,7 +20,7 @@ public class ClientParseForServer {
     public String ParseToJson(String commanders) {
         String [] parts = commanders.split(" ");
         StringBuilder stringBuilder = new StringBuilder();
-        if(parts[0].equals("delete")) {
+        if(parts[0].equals("don't delete")) {
             stringBuilder.append(parts[1]);
             for(int i = 2; i < parts.length; i++) {
                 stringBuilder.append(" ").append(parts[i]);
